@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+/* Reset default browser styles */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Global Styles */
+body {
+  background-color: #121212; /* Dark background */
+  color: #f0f0f0; /* Light text color */
+}
+
+header {
+  background-color: #1e1e1e; /* Darker shade for header */
+  color: #fff;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #f39c12; /* Bright accent color */
+  text-decoration: none;
+  font-weight: bold; /* Bold font for better visibility */
+  font-size: 16px; /* Adjusted font size */
+}
+
+.hero, .about, .features {
+  background-color: #262626; /* Slightly lighter than body */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feature {
+  width: 300px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.feature img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+footer {
+  background-color: #1e1e1e; /* Darker shade for footer */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Additional Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #f39c12; /* Bright accent color */
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f39c12; /* Bright accent color */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #d8870a; /* Darker shade of accent color */
+}
+
+ul, ol {
+  margin-left: 20px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Adjust the height as needed */
+ 
+  background-image: url('4.jpeg');
+  background-size: cover; /* or 'contain' based on your preference */
+  background-position: center; /* or adjust as needed */
+  color: #fff; /* set the text color to ensure readability against the background */
+  padding: 50px; /* add padding to provide space around the content */
+  text-align: center; /* center-align the text */
+  }
+  
+  .hero {
+    font-size: 36px; /* adjust the font size as needed */
+    font-weight: bold;
+  }
+  
+  .hero {
+    font-size: 18px; /* adjust the font size as needed */
+    line-height: 1.5;
+  }
+  
+}
+
+.center-content {
+  text-align: center;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+/* Container needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the dropdown-content on click) */
+.show {display:block;}
+

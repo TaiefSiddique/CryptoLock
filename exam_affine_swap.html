@@ -1,0 +1,121 @@
+83% of storage used … If you run out, you won't have enough storage to create, edit, and upload files. Get 100 GB of storage for BDT 150.00 BDT 38.00/month for 3 months.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affine and Swap Cipher</title>
+    <link rel="stylesheet" href="form1.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="contactForm">
+                <h2>Affine and Swap Cipher</h2>
+                
+                <div class="half-width">
+                    <div class="inputBox">
+                        <label for="plaintext" style="color: white;">Enter 8-bit Plain Text:</label>
+                        <input type="text" id="plaintext" maxlength="8" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="a" style="color: white;">Enter 'a' for Affine Cipher:</label>
+                        <input type="number" id="a" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="b" style="color: white;">Enter 'b' for Affine Cipher:</label>
+                        <input type="number" id="b" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="submit" value="Encrypt" onclick="encrypt()">
+                    </div>
+
+                    <div class="inputBox">
+                        <textarea id="encryptedText" readonly></textarea>
+                        <span>Encrypted Text:</span>
+                    </div>
+                </div>
+
+                <div class="half-width">
+                    <div class="inputBox">
+                        <label for="ciphertext" style="color: white;">Enter 8-bit Cipher Text:</label>
+                        <input type="text" id="ciphertext" maxlength="8" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="a_inverse" style="color: white;">Enter 'a' inverse for Affine Cipher:</label>
+                        <input type="number" id="a_inverse" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="b_inverse" style="color: white;">Enter 'b' inverse for Affine Cipher:</label>
+                        <input type="number" id="b_inverse" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="submit" value="Decrypt" onclick="decrypt()">
+                    </div>
+
+                    <div class="inputBox">
+                        <textarea id="decryptedText" readonly></textarea>
+                        <span>Decrypted Text:</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function encrypt() {
+            const plaintext = document.getElementById('plaintext').value;
+            const a = parseInt(document.getElementById('a').value);
+            const b = parseInt(document.getElementById('b').value);
+
+            let affineEncryptedText = applyAffineCipher(plaintext, a, b, true);
+            let encryptedText = swapCipher(affineEncryptedText);
+
+            document.getElementById('encryptedText').value = encryptedText;
+        }
+
+        function decrypt() {
+            const ciphertext = document.getElementById('ciphertext').value;
+            const a_inverse = parseInt(document.getElementById('a_inverse').value);
+            const b_inverse = parseInt(document.getElementById('b_inverse').value);
+
+            let swappedCiphertext = swapCipher(ciphertext, true);
+            let decryptedText = applyAffineCipher(swappedCiphertext, a_inverse, b_inverse, false);
+
+            document.getElementById('decryptedText').value = decryptedText;
+        }
+
+        function applyAffineCipher(text, a, b, isEncrypt) {
+            let result = '';
+
+            for (let i = 0; i < text.length; i++) {
+                if (isEncrypt) {
+                    result += String.fromCharCode((a * (text.charCodeAt(i) - 65) + b) % 26 + 65);
+                } else {
+                    result += String.fromCharCode(((a * ((text.charCodeAt(i) - 65) - b)) % 26 + 26) % 26 + 65);
+                }
+            }
+
+            return result;
+        }
+
+        function swapCipher(text, isDecrypt = false) {
+            const swapSequence = isDecrypt ? [0, 1, 2, 3, 4, 5, 6, 7] : [5, 0, 2, 6, 7, 1, 3, 4];
+            let result = '';
+
+            for (let i = 0; i < text.length; i++) {
+                result += text[swapSequence[i]] || text[i];
+            }
+
+            return result;
+        }
+    </script>
+</body>
+</html>
+

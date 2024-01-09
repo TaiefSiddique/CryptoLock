@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    background: #121212; /* Dark background */
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    background: #1e1e1e; /* Darker shade for container */
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.contactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 40px;
+}
+
+.contactForm h2 {
+    grid-column: 1 / -1;
+    color: #f39c12; /* Bright accent color */
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.inputBox {
+    margin-bottom: 20px; /* Adjusted margin for consistency */
+}
+
+.inputBox span {
+    display: block;
+    color: #a5a5a5; /* Light grey text */
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.inputBox input,
+.inputBox textarea {
+    width: 100%;
+    padding: 12px 30px; /* Adjusted padding for textboxes */
+    font-size: 16px;
+    color: #f0f0f0; /* Light text */
+    background: #262626; /* Slightly lighter than container */
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+.inputBox textarea {
+    height: 120px;
+    resize: none;
+}
+
+.inputBox input[type="submit"] {
+    background: #f39c12; /* Bright accent color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.inputBox input[type="submit"]:hover {
+    background: #d8870a; /* Darker shade of accent color */
+    transform: translateY(-2px);
+}
+
+.back {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.back a {
+    color: #f39c12; /* Bright accent color */
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.back a:hover {
+    color: #d8870a;
+}

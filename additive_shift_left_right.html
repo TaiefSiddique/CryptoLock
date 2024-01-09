@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Encryption and Decryption</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="contactForm">
+                <h2>Encrypt and Decrypt Text</h2>
+
+                <div class="inputBox">
+                    <span>Enter Text:</span>
+                    <input type="text" id="inputText" required>
+                </div>
+
+                <div class="inputBox">
+                    <span>Enter Additive Cipher Key:</span>
+                    <input type="number" id="additiveKey" required>
+                </div>
+
+                <div class="inputBox">
+                    <span>Enter Shift Key:</span>
+                    <input type="number" id="shiftKey" required>
+                </div>
+
+                <div class="inputBox">
+                    <input type="submit" value="Additive Shift Left" onclick="encrypt()">
+                </div>
+
+                <div class="inputBox">
+                    <span>Cipher Text:</span>
+                    <textarea id="cipherText" readonly></textarea>
+                </div>
+
+                <div class="inputBox">
+                    <input type="submit" value="Shift Right Subtractive" onclick="decrypt()">
+                </div>
+
+                <div class="inputBox">
+                    <span>Decrypted Text:</span>
+                    <textarea id="decryptedText" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function encrypt() {
+            const text = document.getElementById('inputText').value.toUpperCase();
+            const additiveKey = parseInt(document.getElementById('additiveKey').value) % 26;
+            const shiftKey = parseInt(document.getElementById('shiftKey').value) % text.length;
+
+            let additiveCipher = '';
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (char >= 'A' && char <= 'Z') {
+                    additiveCipher += String.fromCharCode((char.charCodeAt(0) - 65 + additiveKey) % 26 + 65);
+                } else {
+                    additiveCipher += char;
+                }
+            }
+
+            let finalCipher = additiveCipher.substring(shiftKey) + additiveCipher.substring(0, shiftKey);
+            document.getElementById('cipherText').value = finalCipher;
+        }
+
+        function decrypt() {
+            const cipherText = document.getElementById('cipherText').value.toUpperCase();
+            const additiveKey = parseInt(document.getElementById('additiveKey').value) % 26;
+            const shiftKey = parseInt(document.getElementById('shiftKey').value) % cipherText.length;
+
+            let shiftedText = cipherText.substring(cipherText.length - shiftKey) + cipherText.substring(0, cipherText.length - shiftKey);
+
+            let decryptedText = '';
+            for (let i = 0; i < shiftedText.length; i++) {
+                const char = shiftedText[i];
+                if (char >= 'A' && char <= 'Z') {
+                    decryptedText += String.fromCharCode((char.charCodeAt(0) - 65 - additiveKey + 26) % 26 + 65);
+                } else {
+                    decryptedText += char;
+                }
+            }
+
+            document.getElementById('decryptedText').value = decryptedText;
+        }
+    </script>
+</body>
+</html>

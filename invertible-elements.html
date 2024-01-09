@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invertible Elements Finder</title>
+    <link rel="stylesheet" href="form.css"> <!-- Assuming your CSS is in form.css -->
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="contactForm">
+                <h2>Invertible Elements Finder</h2>
+                <div class="inputBox">
+                    <input type="number" id="numberInput" required>
+                    <span>Enter an Integer:</span>
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Find Invertibles" onclick="findInvertibles()">
+                </div>
+                <div class="inputBox">
+                    <textarea id="result" readonly></textarea>
+                    <span>Results:</span>
+                </div>
+                <div class="inputBox">
+                    <select id="choiceBox"></select>
+                    <span>Choose an Invertible Element to see the Multiplicative Inverse:</span>
+                </div>
+                <div class="inputBox">
+                    <input type="submit" value="Find Multiplicative Inverse" onclick="findInverse()">
+                </div>
+                <div class="inputBox">
+                    <span id="inverseResult"></span>
+                </div>
+                <div class="back">
+                    <a href="index.html">Back</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let invertibles = [];
+
+        function findInvertibles() {
+            const n = parseInt(document.getElementById('numberInput').value);
+            invertibles = [];
+
+            for (let i = 1; i < n; i++) {
+                if (gcd(i, n) === 1) {
+                    invertibles.push(i);
+                }
+            }
+
+            document.getElementById('result').innerText = 'Invertible Elements are: ' + invertibles.join(', ');
+
+            const choiceBox = document.getElementById('choiceBox');
+            choiceBox.innerHTML = invertibles.map(i => `<option value="${i}">${i}</option>`).join('');
+        }
+
+        function findInverse() {
+            const n = parseInt(document.getElementById('numberInput').value);
+            const chosenNumber = parseInt(document.getElementById('choiceBox').value);
+            const resultSpan = document.getElementById('inverseResult');
+
+            for (let i = 1; i < n; i++) {
+                if ((chosenNumber * i) % n === 1) {
+                    resultSpan.textContent = `Multiplicative Inverse of ${chosenNumber} is: ${i}`;
+                    return;
+                }
+            }
+            resultSpan.textContent = 'No multiplicative inverse found.';
+        }
+
+        function gcd(a, b) {
+            while (b != 0) {
+                let t = b;
+                b = a % b;
+                a = t;
+            }
+            return a;
+        }
+    </script>
+</body>
+</html>

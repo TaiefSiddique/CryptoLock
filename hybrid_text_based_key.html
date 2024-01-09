@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Encryption and Decryption</title>
+    <link rel="stylesheet" href="form.css"> <!-- Assuming your CSS is in form.css -->
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="contactForm">
+                <h2>Text Encryption and Decryption</h2>
+
+                <div class="inputBox">
+                    <label for="textInput" style="color: white;">Text:</label>
+                    <input type="text" id="textInput">
+                </div>
+
+                <div class="inputBox w50">
+                    <label for="algorithmSelect" style="color: white;">Select Algorithm:</label>
+                    <select id="algorithmSelect">
+                        <option value="additive">Additive Cipher</option>
+                        <option value="multiplicative">Multiplicative Cipher</option>
+                        <option value="subtractive">Subtractive Cipher</option>
+                    </select>
+                </div>
+
+                <div class="inputBox w50">
+                    <label for="keyInput" style="color: white;">Encryption/Decryption Key (Text):</label>
+                    <input type="text" id="keyInput">
+                </div>
+
+                <div class="inputBox w50">
+                    <label for="directionSelect" style="color: white;">Select Direction:</label>
+                    <select id="directionSelect">
+                        <option value="encrypt">Encrypt</option>
+                        <option value="decrypt">Decrypt</option>
+                    </select>
+                </div>
+
+                <div class="inputBox">
+                    <button onclick="processText()">Apply</button>
+                </div>
+
+                <div class="inputBox">
+                    <p style="color: white;">Result:</p>
+                    <textarea id="result" readonly></textarea>
+                </div>
+
+                <div class="back">
+                    <a href="index.html">Back</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function processText() {
+            const text = document.getElementById('textInput').value.toLowerCase();
+            const key = document.getElementById('keyInput').value.toLowerCase(); // Convert key to lowercase
+            const algorithm = document.getElementById('algorithmSelect').value;
+            const direction = document.getElementById('directionSelect').value;
+
+            let keyNumericValue = 0;
+
+            // Calculate a numeric value for the key based on ASCII values
+            for (let i = 0; i < key.length; i++) {
+                keyNumericValue += key.charCodeAt(i) - 97;
+            }
+
+            // Mod key value by 26
+            keyNumericValue %= 26;
+
+            let result = '';
+
+            switch (algorithm) {
+                case 'additive':
+                    result = (direction === 'encrypt') ?
+                        applyAdditiveCipher(text, keyNumericValue) :
+                        applyAdditiveCipher(text, 26 - keyNumericValue);
+                    break;
+                case 'multiplicative':
+                    result = (direction === 'encrypt') ?
+                        applyMultiplicativeCipher(text, keyNumericValue) :
+                        applyMultiplicativeCipher(text, findMultiplicativeInverse(keyNumericValue, 26));
+                    break;
+                case 'subtractive':
+                    result = (direction === 'encrypt') ?
+                        applySubtractiveCipher(text, keyNumericValue) :
+                        applySubtractiveCipher(text, 26 - keyNumericValue);
+                    break;
+                default:
+                    alert('Invalid algorithm selection');
+                    return;
+            }
+
+            document.getElementById('result').value = result.toUpperCase();
+        }
+
+        function applyAdditiveCipher(text, key) {
+            // Apply Additive Cipher algorithm
+            return text.split('').map(char => {
+                let code = char.charCodeAt(0) - 97; // Convert 'a' to 0, 'b' to 1, ..., 'z' to 25
+                return String.fromCharCode((code + key) % 26 + 97);
+            }).join('');
+        }
+
+        function applyMultiplicativeCipher(text, key) {
+            // Apply Multiplicative Cipher algorithm
+            return text.split('').map(char => {
+                let code = char.charCodeAt(0) - 97; // Convert 'a' to 0, 'b' to 1, ..., 'z' to 25
+                return String.fromCharCode((code * key) % 26 + 97);
+            }).join('');
+        }
+
+        function applySubtractiveCipher(text, key) {
+            // Apply Subtractive Cipher algorithm
+            return text.split('').map(char => {
+                let code = char.charCodeAt(0) - 97; // Convert 'a' to 0, 'b' to 1, ..., 'z' to 25
+                return String.fromCharCode((code - key + 26) % 26 + 97);
+            }).join('');
+        }
+
+        function findMultiplicativeInverse(a, m) {
+            for (let i = 1; i < m; i++) {
+                if ((a * i) % m === 1) {
+                    return i;
+                }
+            }
+            return -1; // Inverse doesn't exist
+        }
+    </script>
+</body>
+</html>

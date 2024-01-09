@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CryptoLock - Secure Message Encryption</title>
+  <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="subtractive_form.html"> Subtractive Algorithm ||</a></li>
+        <li><a href="reverse_affine_form.html">Reverse Affine Method ||</a></li>
+        <li><a href="division_c.html">Division Algorithm ||</a></li>
+        <li><a href="exam_affine_swap.html">Affine Swap Technique ||</a></li>
+        <li><a href="hybrid_text_based_key.html">Hybrid Text-Based Key ||</a></li>
+        <li><a href="additive_shift_left_right.html">Additive Shift Left Right ||</a></li>
+        <li><a href="vigenere_additive_swap.html">Vigenere Additive Swap ||</a></li>
+        <li><a href="invertible-elements.html">Invertible Elements</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="center-content">
+      <h1>Welcome to CryptoLock</h1>
+      <p>Secure Your Messages with Advanced Encryption</p>
+      <div class="dropdown">
+        <button class="dropbtn" onclick="toggleDropdown()">See More</button>
+        <div id="dropdownContent" class="dropdown-content">
+          <a href="subtractive_form.html">Subtractive Cipher</a>
+          <a href="reverse_affine_form.html">Reverse Affine</a>
+          <a href="division_c.html">Division C</a>
+          <a href="exam_affine_swap.html">Exam Affine Swap</a>
+          <a href="hybrid_text_based_key.html">Hybrid Text Based Key</a>
+          <a href="additive_shift_left_right.html">Additive Shift Left Right</a>
+          <a href="vigenere_additive_swap.html">Vigenere Additive Swap</a>
+          <a href="invertible-elements.html">Invertible Elements</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    function toggleDropdown() {
+      document.getElementById("dropdownContent").classList.toggle("show");
+    }
+  
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
+  
+  
+    <script>
+      function showAlert() {
+        alert("Coming Soon");
+      }
+    </script>
+  </section>
+  
+
+  <section class="about">
+    <h2>About CryptoLock</h2>
+    <p>Project Title: CryptoLock: An application designed for secure message encryption and decryption using specific encryption algorithms.</p>
+    <ul>
+      <li>Design and develop a web application that can securely encrypt and decrypt messages using specific encryption algorithms.</li>
+      <li>Implement security features to protect the web application from unauthorized access and attacks.</li>
+      <li>Evaluate the performance and security of the web application.</li>
+    </ul>
+  </section>
+
+  <section class="features">
+    <h2>Features of CryptoLock</h2>
+    <div class="feature">
+      <img src="1.jpeg" alt="Secure Encryption">
+      <h3>Secure Encryption</h3>
+      <p>Advanced algorithms ensure that your messages are encrypted securely, protecting them from unauthorized access.</p>
+    </div>
+    <div class="feature">
+      <img src="2.jpeg" alt="User-Friendly Interface">
+      <h3>User-Friendly Interface</h3>
+      <p>A simple and intuitive interface allows for easy encryption and decryption of messages without any hassle.</p>
+    </div>
+    <div class="feature">
+      <img src="3.jpeg" alt="High Performance">
+      <h3>High Performance</h3>
+      <p>Efficient algorithms provide fast and reliable performance, ensuring your messages are processed quickly.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 CryptoLock. All rights reserved.</p>
+  </footer>
+</body>
+</html>
